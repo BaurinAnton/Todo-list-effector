@@ -1,4 +1,5 @@
 import { createEffect } from "effector";
+
 import { TTodos } from "types";
 
 const URL = "https://jsonplaceholder.typicode.com/todos";

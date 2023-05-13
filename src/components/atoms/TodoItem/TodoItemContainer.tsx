@@ -1,5 +1,6 @@
 import { memo, useCallback } from "react";
-import { completedTodo, deleteTodo } from "../../../models/events";
+
+import { completedTodo, deleteTodo } from "models/events";
 import { TTodo } from "types";
 import { TodoItem } from "./TodoItem";
 

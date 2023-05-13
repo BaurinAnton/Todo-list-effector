@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { useStore } from "effector-react";
 import styled from "styled-components";
+
 import { $isLoading, $todosCompleted, $todosNotCompleted } from "models/stores";
-import { TodoItemContainer } from "../../atoms";
 import { getTodos } from "models/events";
-import { useEffect } from "react";
+import { TodoItemContainer } from "../../atoms";
 
 export const TodoListContainer = () => {
   const isLoading = useStore($isLoading);
