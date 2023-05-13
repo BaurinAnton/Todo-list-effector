@@ -1,3 +1,3 @@
 # TODO
 
-## Stack: React, Effector, CSS.
+## Stack: React, Effector, styled-components.
