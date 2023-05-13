@@ -20,7 +20,12 @@ export const TodoListContainer = () => {
         <TitleTodoListStyle>Невыполненные TODO</TitleTodoListStyle>
         <TodoListStyle>
           {todosNotCompleted.map((todo) => (
-            <TodoItemContainer todo={todo} key={todo.id} />
+            <TodoItemContainer
+              isCompleted={todo.completed}
+              id={todo.id}
+              title={todo.title}
+              key={todo.id}
+            />
           ))}
         </TodoListStyle>
       </div>
@@ -28,7 +33,12 @@ export const TodoListContainer = () => {
         <TitleTodoListStyle>Выполненные TODO</TitleTodoListStyle>
         <TodoListStyle>
           {todosCompleted.map((todo) => (
-            <TodoItemContainer todo={todo} key={todo.id} />
+            <TodoItemContainer
+              isCompleted={todo.completed}
+              id={todo.id}
+              title={todo.title}
+              key={todo.id}
+            />
           ))}
         </TodoListStyle>
       </div>
