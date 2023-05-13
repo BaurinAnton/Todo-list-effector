@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { useStore } from "effector-react";
 import styled from "styled-components";
+
 import { $isLoading, $todosCompleted, $todosNotCompleted } from "models/stores";
-import { TodoItemContainer } from "../../atoms";
 import { getTodos } from "models/events";
-import { useEffect } from "react";
+import { COMPLITED_TODO, LOADING, NOT_COMPLITED_TODO } from "./constants";
+import { TodoItemContainer } from "../../atoms";
 
 export const TodoListContainer = () => {
   const isLoading = useStore($isLoading);
@@ -12,23 +14,33 @@ export const TodoListContainer = () => {
 
   useEffect(() => getTodos(), []);
 
-  if (isLoading) return <LoadingStyle>Загрузка...</LoadingStyle>;
+  if (isLoading) return <LoadingStyle>{LOADING}</LoadingStyle>;
 
   return (
     <>
       <div>
-        <TitleTodoListStyle>Невыполненные TODO</TitleTodoListStyle>
+        <TitleTodoListStyle>{NOT_COMPLITED_TODO}</TitleTodoListStyle>
         <TodoListStyle>
           {todosNotCompleted.map((todo) => (
-            <TodoItemContainer todo={todo} key={todo.id} />
+            <TodoItemContainer
+              isCompleted={todo.completed}
+              id={todo.id}
+              title={todo.title}
+              key={todo.id}
+            />
           ))}
         </TodoListStyle>
       </div>
       <div>
-        <TitleTodoListStyle>Выполненные TODO</TitleTodoListStyle>
+        <TitleTodoListStyle>{COMPLITED_TODO}</TitleTodoListStyle>
         <TodoListStyle>
           {todosCompleted.map((todo) => (
-            <TodoItemContainer todo={todo} key={todo.id} />
+            <TodoItemContainer
+              isCompleted={todo.completed}
+              id={todo.id}
+              title={todo.title}
+              key={todo.id}
+            />
           ))}
         </TodoListStyle>
       </div>

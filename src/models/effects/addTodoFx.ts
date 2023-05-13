@@ -1,10 +1,7 @@
 import { createEffect } from "effector";
-import { TTodo, TTodoAdd } from "types";
 
-const URL = "https://jsonplaceholder.typicode.com/todos";
-const HEADERS = {
-  "Content-type": "application/json; charset=UTF-8",
-};
+import { TTodo, TTodoAdd } from "types";
+import { URL, HEADERS } from "../constants";
 
 type TAddTodoFx = (todo: TTodoAdd) => Promise<TTodo>;
 

@@ -1,7 +1,8 @@
+import { ChangeEvent, useCallback, useState } from "react";
+
 import { addTodo } from "models/events";
 import { TTodo } from "types";
 import { AddTodo } from "./AddTodo";
-import { ChangeEvent, useCallback, useState } from "react";
 
 export const AddTodoContainer = () => {
   const [valueChangeInput, setValueChangeInput] = useState<TTodo["title"]>("");

@@ -1,7 +1,7 @@
 import { createEffect } from "effector";
-import { TTodos } from "types";
 
-const URL = "https://jsonplaceholder.typicode.com/todos";
+import { TTodos } from "types";
+import { URL } from "../constants";
 
 type TGetTodosFx = () => Promise<TTodos>;
 
