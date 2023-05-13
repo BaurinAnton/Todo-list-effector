@@ -1,6 +1,12 @@
 import { createStore, sample } from "effector";
 
 import type { TTodos } from "types/todos";
+import {
+  ERROR_ADD_TODO,
+  ERROR_COMPLETED_TODO,
+  ERROR_DELETE_TODO,
+  ERROR_GET_TODO,
+} from "models/constants";
 import { addTodo, deleteTodo, completedTodo, getTodos } from "../events";
 import {
   getTodosFx,
@@ -11,15 +17,15 @@ import {
 
 export const $todos = createStore<TTodos>([])
   .on(getTodosFx.doneData, (_, todos) => [...todos])
-  .on(getTodosFx.fail, () => alert("Не удалось запросить Todo"))
+  .on(getTodosFx.fail, () => alert(ERROR_GET_TODO))
 
   .on(addTodoFx.doneData, (todos, todo) => [...todos, todo])
-  .on(addTodoFx.fail, () => alert("Не удалось добавить todo-штку"))
+  .on(addTodoFx.fail, () => alert(ERROR_ADD_TODO))
 
   .on(deleteTodoFx.doneData, (todos, isOk) =>
     todos.filter((todo) => todo.id !== isOk.id)
   )
-  .on(deleteTodoFx.fail, () => alert("Не удалось удалить todo-штку"))
+  .on(deleteTodoFx.fail, () => alert(ERROR_DELETE_TODO))
 
   .on(completedTodoFx.doneData, (todos, patchTodo) =>
     todos.map((todo) => {
@@ -29,7 +35,7 @@ export const $todos = createStore<TTodos>([])
       return todo;
     })
   )
-  .on(completedTodoFx.fail, () => alert("Не удалось выполнить todo-шку"));
+  .on(completedTodoFx.fail, () => alert(ERROR_COMPLETED_TODO));
 
 export const $isLoading = createStore<boolean>(false)
   .on(getTodosFx, () => true)

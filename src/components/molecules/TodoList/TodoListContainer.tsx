@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { $isLoading, $todosCompleted, $todosNotCompleted } from "models/stores";
 import { getTodos } from "models/events";
+import { COMPLITED_TODO, LOADING, NOT_COMPLITED_TODO } from "./constants";
 import { TodoItemContainer } from "../../atoms";
 
 export const TodoListContainer = () => {
@@ -13,12 +14,12 @@ export const TodoListContainer = () => {
 
   useEffect(() => getTodos(), []);
 
-  if (isLoading) return <LoadingStyle>Загрузка...</LoadingStyle>;
+  if (isLoading) return <LoadingStyle>{LOADING}</LoadingStyle>;
 
   return (
     <>
       <div>
-        <TitleTodoListStyle>Невыполненные TODO</TitleTodoListStyle>
+        <TitleTodoListStyle>{NOT_COMPLITED_TODO}</TitleTodoListStyle>
         <TodoListStyle>
           {todosNotCompleted.map((todo) => (
             <TodoItemContainer
@@ -31,7 +32,7 @@ export const TodoListContainer = () => {
         </TodoListStyle>
       </div>
       <div>
-        <TitleTodoListStyle>Выполненные TODO</TitleTodoListStyle>
+        <TitleTodoListStyle>{COMPLITED_TODO}</TitleTodoListStyle>
         <TodoListStyle>
           {todosCompleted.map((todo) => (
             <TodoItemContainer

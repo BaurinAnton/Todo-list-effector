@@ -1,10 +1,7 @@
 import { createEffect } from "effector";
 
 import { TTodo, TTodoCompleted } from "types";
-
-const HEADERS = {
-  "Content-type": "application/json; charset=UTF-8",
-};
+import { URL, HEADERS } from "../constants";
 
 type TCompletedTodoFx = (
   todo: TTodoCompleted,
@@ -13,10 +10,9 @@ type TCompletedTodoFx = (
 
 export const completedTodoFx = createEffect<TCompletedTodoFx>(
   async ({ completed, id }) => {
-    const URL = `https://jsonplaceholder.typicode.com/todos/${id}`;
     const body = { completed };
 
-    const req = await fetch(URL, {
+    const req = await fetch(`${URL}/${id}`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: HEADERS,

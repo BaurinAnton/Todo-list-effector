@@ -2,6 +2,7 @@ import { memo } from "react";
 import { styled } from "styled-components";
 
 import { TTodo } from "types";
+import { DELETE } from "./constants";
 
 type TTodoItemProps = {
   children: React.ReactNode;
@@ -27,7 +28,7 @@ export const TodoItem = memo(
         {children}
       </TextTodoItemStyle>
       <DeleteTodoItemStyle onClick={handleDeleteTodo}>
-        Удалить
+        {DELETE}
       </DeleteTodoItemStyle>
     </TodoItemStyle>
   )

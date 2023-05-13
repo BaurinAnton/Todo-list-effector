@@ -1,6 +1,8 @@
 import { ChangeEvent, memo } from "react";
 import styled from "styled-components";
 
+import { ADD } from "./constants";
+
 type TAddTodoProps = {
   handleAddTodo: () => void;
   handleChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -15,7 +17,7 @@ export const AddTodo = memo(
         onChange={handleChangeInput}
         value={valueChangeInput}
       />
-      <ButtonStyle onClick={handleAddTodo}>Добавить</ButtonStyle>
+      <ButtonStyle onClick={handleAddTodo}>{ADD}</ButtonStyle>
     </AddTodoStyle>
   )
 );
