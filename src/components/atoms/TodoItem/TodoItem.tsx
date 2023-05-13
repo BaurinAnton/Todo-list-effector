@@ -1,4 +1,6 @@
+import { memo } from "react";
 import { styled } from "styled-components";
+
 import { TTodo } from "types";
 
 type TTodoItemProps = {
@@ -8,23 +10,27 @@ type TTodoItemProps = {
   isCompleted: TTodo["completed"];
 };
 
-export const TodoItem = ({
-  children,
-  handleDeleteTodo,
-  handleChangeTodo,
-  isCompleted,
-}: TTodoItemProps) => (
-  <TodoItemStyle>
-    <ChangeTodoItemStyle
-      type="checkbox"
-      onChange={handleChangeTodo}
-      checked={isCompleted}
-    />
-    <TextTodoItemStyle isCompleted={isCompleted}>{children}</TextTodoItemStyle>
-    <DeleteTodoItemStyle onClick={handleDeleteTodo}>
-      Удалить
-    </DeleteTodoItemStyle>
-  </TodoItemStyle>
+export const TodoItem = memo(
+  ({
+    children,
+    handleDeleteTodo,
+    handleChangeTodo,
+    isCompleted,
+  }: TTodoItemProps) => (
+    <TodoItemStyle>
+      <ChangeTodoItemStyle
+        type="checkbox"
+        onChange={handleChangeTodo}
+        checked={isCompleted}
+      />
+      <TextTodoItemStyle isCompleted={isCompleted}>
+        {children}
+      </TextTodoItemStyle>
+      <DeleteTodoItemStyle onClick={handleDeleteTodo}>
+        Удалить
+      </DeleteTodoItemStyle>
+    </TodoItemStyle>
+  )
 );
 
 const TodoItemStyle = styled.div`
